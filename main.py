@@ -42,13 +42,14 @@ with st.form("user_form"):
     name = st.text_input("姓名")
     email = st.text_input("邮箱")
     age = st.number_input("年龄", min_value=0, max_value=120)
+    note = st.text_input("Note")
     
     submitted = st.form_submit_button("提交")
     
     if submitted:
         db = next(get_db())
         try:
-            create_user(db, name=name, email=email, age=age)
+            create_user(db, name=name, email=email, age=age, note=note)
             st.success("用户添加成功!")
         except Exception as e:
             st.error(f"添加失败: {str(e)}")
